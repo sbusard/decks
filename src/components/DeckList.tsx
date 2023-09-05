@@ -1,8 +1,12 @@
 import React from "react";
-import { Card } from "../utils/parser";
+import { Deck } from "../utils/parser";
+import { CardList } from "./CardList";
 
-export function DeckList(props: { cards: Card[] }) {
-    return <ul>
-        {props.cards.map((card) => <li key={card.name}>{card.count} {card.name}</li>)}
-    </ul>;
+export function DeckList(props: { deck: Deck }) {
+    return <div>
+        <h1 className="font-bold">Main deck</h1>
+        <CardList cards={props.deck.main} />
+        <h1 className="font-bold">Sideboard</h1>
+        <CardList cards={props.deck.sideboard} />
+    </div>;
 }

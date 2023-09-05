@@ -14,8 +14,8 @@ export function DeckTransform() {
     return <div className="grid grid-cols-2 gap-4 min-h-0 min-w-0 max-w-[820px] mx-auto m-4">
         <PasteDeckArea onPaste={setDeckString1} />
         <PasteDeckArea onPaste={setDeckString2} />
-        <DeckList cards={deck1} />
-        <DeckList cards={deck2} />
-        {deck1.length > 0 && deck2.length > 0 ? <DeckDiffList deckDiff={deckDiff} /> : <div>Paste two decks to display the differences</div>}
+        <DeckList deck={deck1} />
+        <DeckList deck={deck2} />
+        {deck1.size > 0 && deck2.size > 0 ? <DeckDiffList deckDiff={deckDiff} /> : <div>Paste two decks to display the differences</div>}
     </div>;
 }

@@ -1,11 +1,20 @@
-import { Card } from "./parser";
+import { Card, Deck } from "./parser";
 
 export interface DeckDiff {
-    toAdd: Card[];
-    toRemove: Card[];
+    toAdd: Deck;
+    toRemove: Deck;
 }
 
-export function diffDecks(oldDeck: Card[], newDeck: Card[]): DeckDiff {
+export function diffDecks(oldDeck: Deck, newDeck: Deck): DeckDiff {
+    const mainDiff = diffCardSet(oldDeck.main, newDeck.main);
+    const sideboardDiff = diffCardSet(oldDeck.sideboard, newDeck.sideboard);
+    return {
+        toAdd: new Deck(mainDiff.toAdd, sideboardDiff.toAdd),
+        toRemove: new Deck(mainDiff.toRemove, sideboardDiff.toRemove)
+    }
+}
+
+function diffCardSet(oldDeck: Card[], newDeck: Card[]): { toAdd: Card[], toRemove: Card[] } {
     const oldMap = new Map(oldDeck.map((card) => [card.name, card]));
     const newMap = new Map(newDeck.map((card) => [card.name, card]));
 
