@@ -6,5 +6,10 @@ export function PasteDeckArea(props: { onPaste: (text: string) => void }) {
     if (text) props.onPaste(text);
     event.preventDefault();
   }, [props.onPaste]);
-  return <textarea className="border min-h-[200px] min-w-[400px]" placeholder="Paste your deck here" onPaste={handlePaste}></textarea>
+  const placeholder = `Paste your deck here.\nSeparate main deck from sideboard with "Sideboard".`;
+  return <textarea
+    className="border min-h-[200px] min-w-[400px]"
+    placeholder={placeholder}
+    onPaste={handlePaste}
+  ></textarea>
 }
